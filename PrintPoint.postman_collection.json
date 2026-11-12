@@ -1,0 +1,577 @@
+{
+  "info": {
+    "name": "PrintPoint Centre API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Postman collection for the PrintPoint Centre backend (Express + SQLite)."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1 Get all printers",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 Add printer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 201\", function () {",
+              "    pm.response.to.have.status(201);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/printers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Prusa MK4\",\n  \"material\": \"PLA\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 Add printer - invalid (empty body)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/printers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers"
+          ]
+        },
+        "description": "Validation check: should return 400 with a clear error message.",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4 Get one printer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5 Get printer - not found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 404\", function () {",
+              "    pm.response.to.have.status(404);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers/999",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "999"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6 Update printer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/printers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Prusa MK4 Updated\",\n  \"material\": \"PETG\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7 Update printer - invalid (empty body)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 400\", function () {",
+              "    pm.response.to.have.status(400);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/printers/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "1"
+          ]
+        },
+        "description": "Validation check on update: should return 400 with a clear error message.",
+        "body": {
+          "mode": "raw",
+          "raw": "{}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "8 Search printers by material",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers?material=PLA",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers"
+          ],
+          "query": [
+            {
+              "key": "material",
+              "value": "PLA"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "9 Printer summary by material (twist)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers/summary",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "summary"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "10 Reservations with designer and printer name (join)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/reservations/details",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "reservations",
+            "details"
+          ]
+        },
+        "description": "Join endpoint. CHECK the real route name with your teammates and edit the URL if needed."
+      },
+      "response": []
+    },
+    {
+      "name": "11 Delete printer",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status is 200 or 204\", function () {",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 204]);",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/printers/6",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "printers",
+            "6"
+          ]
+        },
+        "description": "CHECK with your teammates whether delete returns 200 or 204."
+      },
+      "response": []
+    },
+    {
+      "name": "Twist tests",
+      "description": "Run in this order on a fresh/empty database: Test 3, Test 1 (two requests), Test 2.",
+      "item": [
+        {
+          "name": "Test 3 - No printers: summary returns 200 with empty list",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/printers/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "printers",
+                "summary"
+              ]
+            },
+            "description": "Run FIRST, on an empty database. Expected: 200 and an empty list."
+          },
+          "response": []
+        },
+        {
+          "name": "Test 1a - Add printer (PLA)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/printers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "printers"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Printer A\",\n  \"material\": \"PLA\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 1b - Add printer (ABS)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 201\", function () {",
+                  "    pm.response.to.have.status(201);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/printers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "printers"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Printer B\",\n  \"material\": \"ABS\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test 2 - Summary returns 200 with a count for each material",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/printers/summary",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "printers",
+                "summary"
+              ]
+            },
+            "description": "Expected: 200 and a count per material, e.g. PLA: 1, ABS: 1."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
