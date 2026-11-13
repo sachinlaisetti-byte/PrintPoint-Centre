@@ -78,9 +78,9 @@ The container will automatically seed the database on first start.
 | Member # | Name | Role & Assigned Part | Key Contributions & Files |
 |---|---|---|---|
 | **Member 1** | **Preetham** | Server & Routes Setup | Express app initialization, server configuration (`server.js`, `package.json`), CORS setup, central error handling. |
-| **Member 2** | **Navadeep** | Database & Relationships | SQLite schema design, 3 related tables with constraints, foreign keys, and seed script (`database/schema.sql`, `database/database.js`, `database/seed.js`). |
+| **Member 2** | **Jashwanth** (`trjashwanth24-cpu`) | Database & Relationships | SQLite schema design, 3 related tables with constraints, foreign keys, and seed script (`database/schema.sql`, `database/database.js`, `database/seed.js`). |
 | **Member 3** | **Sobhan** | REST Endpoints (CRUD) | Printer CRUD operations (`POST`, `GET`, `PUT`, `DELETE`), parameter queries (`controllers/printerController.js`, `routes/printerRoutes.js`). |
-| **Member 4** | **Jashwanth** (`trjashwanth24-cpu`) | Validation & Search | Input validation middleware, error messages, HTTP status codes, and search by query parameter (`middleware/validators.js`). |
+| **Member 4** | **Navadeep** | Validation & Search | Input validation middleware, error messages, HTTP status codes, and search by query parameter (`middleware/validators.js`). |
 | **Member 5** | **Karthik** | Twist Rule (Summary by Material) | Implementation of `GET /printers/summary` using SQL `GROUP BY` and `COUNT(*)`, passing all 3 twist tests. |
 | **Member 6** | **Sachin** (`sachinlaisetti-byte`) | Postman, README & Integration | Complete Postman collection export, comprehensive documentation, interactive verification dashboard (`output.html`), and Git integration. |
 
